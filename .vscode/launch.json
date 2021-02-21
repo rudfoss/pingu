@@ -2,7 +2,7 @@
 	"configurations": [
 		{
 			"name": "TS file",
-			"type": "node",
+			"type": "pwa-node",
 			"request": "launch",
 			"args": ["${fileBasename}"],
 			"runtimeArgs": [
