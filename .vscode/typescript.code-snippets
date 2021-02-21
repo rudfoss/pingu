@@ -1,0 +1,27 @@
+{
+	"React Component": {
+		"prefix": "react-component",
+		"description": "Creates a react function component without props",
+		"body": [
+			"export interface I${1:name}Props {",
+			"\t${0}",
+			"}",
+			"",
+			"export const ${1:name} = (props: I${1:name}Props) => {",
+			"}",
+			"",
+			"export default ${1:name}"
+		],
+		"scope": "typescriptreact"
+	},
+	"React Propless Component": {
+		"prefix": "react-component-propless",
+		"description": "Creates a react function component without props",
+		"body": [
+			"export const ${1:name} = () => (${0})",
+			"",
+			"export default ${1:name}"
+		],
+		"scope": "typescriptreact"
+	}
+}
