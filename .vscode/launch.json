@@ -1,0 +1,22 @@
+{
+	"configurations": [
+		{
+			"name": "TS file",
+			"type": "node",
+			"request": "launch",
+			"args": ["${fileBasename}"],
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
+			],
+			"resolveSourceMapLocations": [
+				"${workspaceFolder}/**",
+				"!**/node_modules/**"
+			],
+			"cwd": "${fileDirname}",
+			"outputCapture": "std"
+		}
+	]
+}
