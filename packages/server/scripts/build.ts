@@ -3,7 +3,7 @@ import serverConfig from "../webpack/webpack.config.prod"
 import rimraf from "rimraf"
 import { promisify } from "util"
 
-export const buildWebpack = async (webpackConfig: webpack.Configuration) => {
+const buildWebpack = async (webpackConfig: webpack.Configuration) => {
   const distPath = webpackConfig.output!.path!
   console.log(`Clearing output directory "${webpackConfig.output!.path!}"...`)
   await promisify(rimraf)(distPath)
@@ -42,7 +42,7 @@ export const buildWebpack = async (webpackConfig: webpack.Configuration) => {
   })
 }
 
-export const start = async () => {
+const start = async () => {
   console.log("Building server...")
   await buildWebpack(await serverConfig())
 

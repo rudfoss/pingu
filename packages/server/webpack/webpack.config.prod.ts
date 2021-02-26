@@ -5,7 +5,7 @@ import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
 
 const SRC_ROOT_PATH = path.resolve(__dirname, "../src")
 const OUTPUT_PATH = path.resolve(__dirname, "../dist")
-const SERVER_START_FILE = path.resolve(SRC_ROOT_PATH, "index.ts")
+const START_FILE = path.resolve(SRC_ROOT_PATH, "index.ts")
 const TS_CONFIG_FILE = path.resolve(__dirname, "../tsconfig.json")
 
 export default async () => {
@@ -14,7 +14,7 @@ export default async () => {
     target: "node",
     devtool: "source-map",
 
-    entry: [SERVER_START_FILE],
+    entry: [START_FILE],
 
     node: {
       __dirname: false
