@@ -26,7 +26,7 @@ export default async () => {
     },
 
     resolve: {
-      extensions: [".ts", ".tsx"],
+      extensions: [".js", ".jsx", ".ts", ".tsx"],
       plugins: [
         new TsConfigPathsPlugin({
           configFile: TS_CONFIG_FILE
@@ -35,14 +35,50 @@ export default async () => {
     },
 
     optimization: {
+      runtimeChunk: false,
       minimize: false
     },
 
     plugins: [
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1
+      }),
       new DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify("production")
       })
-    ]
+    ],
+
+    module: {
+      rules: [
+        {
+          exclude: /node_modules/,
+          test: /\.[jt]sx?$/,
+          use: [
+            {
+              loader: "babel-loader",
+              options: {
+                babelrc: false,
+                presets: [
+                  [
+                    "@babel/preset-env", // Adds dynamic imports of the necessary polyfills (see .browserslistrc for spec)
+                    {
+                      targets: {
+                        node: "12"
+                      },
+                      useBuiltIns: "usage",
+                      corejs: { version: 3, proposals: true },
+                      debug: false
+                    }
+                  ],
+                  "@babel/preset-typescript"
+                ],
+                plugins: [["@babel/plugin-proposal-class-properties", { loose: true }]]
+              }
+            }
+          ]
+        }
+      ]
+    }
   }
 
   return config
