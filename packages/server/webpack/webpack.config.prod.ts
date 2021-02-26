@@ -1,5 +1,5 @@
 import path from "path"
-import webpack from "webpack"
+import webpack, { DefinePlugin } from "webpack"
 
 import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
 
@@ -36,6 +36,14 @@ export default async () => {
 
     optimization: {
       minimize: false
-    }
+    },
+
+    plugins: [
+      new DefinePlugin({
+        "process.env.NODE_ENV": JSON.stringify("production")
+      })
+    ]
   }
+
+  return config
 }
