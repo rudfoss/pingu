@@ -1,6 +1,7 @@
 import path from "path"
 import webpack, { DefinePlugin } from "webpack"
 
+import ForkTsCheckerPlugin from "fork-ts-checker-webpack-plugin"
 import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
 
 const SRC_ROOT_PATH = path.resolve(__dirname, "../src")
@@ -45,6 +46,9 @@ export default async () => {
       }),
       new DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify("production")
+      }),
+      new ForkTsCheckerPlugin({
+        async: true
       })
     ],
 
