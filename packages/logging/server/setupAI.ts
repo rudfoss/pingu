@@ -20,7 +20,7 @@ export const getCorrelationData = (): ReturnType<typeof getCorrelationContext> =
 export interface InitAppInsightsOptions {
   /**
    * The instrumentation key to use
-   * @default process.env.APPLICATIONINSIGHTS_CONNECTION_STRING ?? process.env.APPINSIGHTS_INSTRUMENTATIONKEY
+   * @default process.env.APPINSIGHTS_INSTRUMENTATIONKEY ?? process.env.APPLICATIONINSIGHTS_CONNECTION_STRING
    */
   instrumentationKey?: string
 
