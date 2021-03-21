@@ -1,3 +1,6 @@
+import { setupAI } from "logging/client/setupAI"
+setupAI({ instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY! }) // Defined in webpack
+
 import React from "react"
 import { render } from "react-dom"
 import App from "./App"

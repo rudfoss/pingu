@@ -1,7 +1,7 @@
 import { Logger, transports as winstonTransports, format, createLogger } from "winston"
 import { nanoid } from "nanoid"
 import { TelemetryClient } from "applicationinsights"
-import { getClient, getCorrelationData } from "./initAppInsights"
+import { getClient, getCorrelationData } from "./setupAI"
 import TransportStream from "winston-transport"
 import { AppInsightsTransport } from "./AppInsightsTransport"
 import colors from "colors/safe"
