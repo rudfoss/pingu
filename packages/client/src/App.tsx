@@ -1,7 +1,12 @@
+import Nav from "features/Nav"
+import { BrowserRouter } from "react-router-dom"
+import AppRouter from "router/AppRouter"
+
 export const App = () => (
-  <>
-    <h1>Hello world</h1>
-  </>
+  <BrowserRouter>
+    <Nav />
+    <AppRouter />
+  </BrowserRouter>
 )
 
 export default App
