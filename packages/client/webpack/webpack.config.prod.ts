@@ -1,8 +1,8 @@
 import path from "path"
 import webpack, { DefinePlugin } from "webpack"
 
+import ForkTsCheckerPlugin from "fork-ts-checker-webpack-plugin"
 import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
-import TerserPlugin from "terser-webpack-plugin"
 import HtmlPlugin from "html-webpack-plugin"
 
 const SRC_ROOT_PATH = path.resolve(__dirname, "../src")
@@ -23,13 +23,6 @@ export default async () => {
     optimization: {
       runtimeChunk: "multiple",
       minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          terserOptions: {
-            sourceMap: true
-          }
-        })
-      ],
       splitChunks: {
         chunks: "all"
       }
@@ -65,6 +58,9 @@ export default async () => {
           removeStyleLinkTypeAttributes: true,
           useShortDoctype: true
         }
+      }),
+      new ForkTsCheckerPlugin({
+        async: true
       })
     ],
 

@@ -1,6 +1,7 @@
 import path from "path"
 import webpack, { DefinePlugin } from "webpack"
 
+import ForkTsCheckerPlugin from "fork-ts-checker-webpack-plugin"
 import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
 import HtmlHarddiskPlugin from "html-webpack-harddisk-plugin"
 import HtmlPlugin from "html-webpack-plugin"
@@ -69,7 +70,10 @@ export default async () => {
         minify: false
       }),
       new webpack.HotModuleReplacementPlugin(),
-      new ReactRefreshWebpackPlugin()
+      new ReactRefreshWebpackPlugin(),
+      new ForkTsCheckerPlugin({
+        async: true
+      })
     ],
 
     module: {
