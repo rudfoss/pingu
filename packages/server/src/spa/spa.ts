@@ -5,6 +5,12 @@ import { createTimer } from "utils/createTimer"
 
 type SPAOptions<TPageState> = SPAPageCreateOptions<TPageState>
 
+/**
+ * Creates a middleware function that renders the provided index page for requests.
+ * Also supports injecting state using `req.spaState` object.
+ * @param options
+ * @returns
+ */
 export const spa = async <TPageState>(options: SPAOptions<TPageState>): Promise<Handler> => {
   const spaPage: SPAPage<TPageState> = await SPAPage.create(options)
   return async (req, res, next) => {
