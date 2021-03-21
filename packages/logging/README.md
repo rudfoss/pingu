@@ -10,7 +10,7 @@ To set up using best-initial configuration use `setupAI` before importing the lo
 
 ```typescript
 import setupAI from "logging/server/setupAI"
-setupAI() // Do this as early as possible.
+setupAI({ instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY }) // Do this as early as possible
 
 import Logger from "logging/server"
 
@@ -25,4 +25,13 @@ app.use((req, res, next) => {
 
 // Create a logger for a specific task:
 const taskLog = logger.newTaskLogger("my task")
+```
+
+## Client
+
+The client setup is relatively simple. Simply call setupAI and your global appInsights client will be available on `window.appInsights`
+
+```typescript
+import { setupAI } from "logging/client/setupAI"
+setupAI({ instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY! }) // Do this as early as possible
 ```

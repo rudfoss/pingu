@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 dotenv.config({ path: path.resolve(__dirname, "../.env") })
 
 import setupAI from "logging/server/setupAI"
-setupAI()
+setupAI({ instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY })
 
 import express from "express"
 import { getConfig } from "getConfig"
