@@ -1,11 +1,11 @@
 # Pingu 🐧
 An opinionated web stack built on node and well-known libraries.
 
-## Dev environment
+## Environment
 
 - Package manager: `yarn`
 - Workspaces
-- Typescript
+- TypeScript
 - ESlint + prettier
 - Bundling: `webpack`
 - Transpiling: `babel`
