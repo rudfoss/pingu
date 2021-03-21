@@ -45,8 +45,7 @@ export default async () => {
         maxChunks: 1
       }),
       new DefinePlugin({
-        "process.env.NODE_ENV": JSON.stringify("production"),
-        "process.env.APPINSIGHTS_INSTRUMENTATIONKEY": JSON.stringify("fb0b35c7-d41c-452c-a1e0-047a2d47ae9a")
+        "process.env.NODE_ENV": JSON.stringify("production")
       }),
       new ForkTsCheckerPlugin({
         async: true

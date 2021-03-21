@@ -1,23 +1,30 @@
-import path from "path"
-import dotenv from "dotenv"
-dotenv.config({ path: path.resolve(__dirname, "../.env") })
+import { getConfig } from "getConfig"
 
 import setupAI from "logging/server/setupAI"
 setupAI({ instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY })
 
 import express from "express"
-import { getConfig } from "getConfig"
 import { createHttpServer } from "../utils/createHttpServer"
 import Logger from "logging/server"
+import { spa } from "spa"
 
 const start = async () => {
   const app = express()
   const config = getConfig()
   const logger = Logger.createAppLogger(config.appName)
 
-  app.get("*", (_, res) => {
+  app.use((req: any, res, next) => {
+    req.spaState = {
+      foo: 42,
+      bar: `Hey there ${'foo"bar'}`
+    }
+    next()
+  })
+
+  app.get("/_health", (_, res) => {
     res.send({ ok: true, time: new Date().toISOString() })
   })
+  app.get("*", await spa({ indexHtmlPath: config.indexHtmlPath, initialState: {} }))
 
   await createHttpServer({
     expressApp: app,

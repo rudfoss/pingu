@@ -51,7 +51,7 @@
 				"${workspaceFolder}/**",
 				"!**/node_modules/**"
 			],
-			"cwd": "${workspaceFolder}/packages/server/src",
+			"cwd": "${workspaceFolder}/packages/server",
 			"outputCapture": "std"
 		}
 	],

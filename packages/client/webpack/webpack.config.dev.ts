@@ -26,6 +26,7 @@ export default async () => {
 
     devServer: {
       compress: true,
+      contentBase: OUTPUT_PATH,
       // clientLogLevel: "none",
       // quiet: true,
 
