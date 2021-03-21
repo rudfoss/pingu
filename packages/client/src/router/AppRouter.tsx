@@ -1,3 +1,4 @@
+import Env from "pages/Env"
 import Home from "pages/Home"
 import { PostRouter } from "pages/Post"
 import { Route, Switch } from "react-router"
@@ -9,6 +10,9 @@ export const AppRouter = () => (
     </Route>
     <Route path="/post">
       <PostRouter />
+    </Route>
+    <Route path="/env">
+      <Env />
     </Route>
     <Route path="/" exact>
       <Home />

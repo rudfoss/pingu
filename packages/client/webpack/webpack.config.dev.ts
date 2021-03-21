@@ -65,7 +65,8 @@ export default async () => {
     plugins: [
       new DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify("development"),
-        "process.env.APPINSIGHTS_INSTRUMENTATIONKEY": JSON.stringify("fb0b35c7-d41c-452c-a1e0-047a2d47ae9a")
+        "process.env.APPINSIGHTS_INSTRUMENTATIONKEY": JSON.stringify("fb0b35c7-d41c-452c-a1e0-047a2d47ae9a"),
+        "process.env.BUILD_TIME": JSON.stringify(new Date().toISOString())
       }),
       new HtmlHarddiskPlugin(),
       new HtmlPlugin({
