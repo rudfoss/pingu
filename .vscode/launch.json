@@ -17,6 +17,49 @@
 			],
 			"cwd": "${fileDirname}",
 			"outputCapture": "std"
+		},
+		{
+			"name": "Client",
+			"type": "pwa-node",
+			"request": "launch",
+			"args": ["${workspaceFolder}/packages/client/scripts/dev.ts"],
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
+			],
+			"resolveSourceMapLocations": [
+				"${workspaceFolder}/**",
+				"!**/node_modules/**"
+			],
+			"cwd": "${workspaceFolder}/packages/client",
+			"outputCapture": "std"
+		},
+		{
+			"name": "Server",
+			"type": "pwa-node",
+			"request": "launch",
+			"args": ["${workspaceFolder}/packages/server/src/index.ts"],
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
+			],
+			"resolveSourceMapLocations": [
+				"${workspaceFolder}/**",
+				"!**/node_modules/**"
+			],
+			"cwd": "${workspaceFolder}/packages/server/src",
+			"outputCapture": "std"
+		}
+	],
+	"compounds": [
+		{
+			"name": "Server/Client",
+			"configurations": ["Server", "Client"],
+			"stopAll": true
 		}
 	]
 }
