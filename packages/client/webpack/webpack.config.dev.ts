@@ -100,8 +100,8 @@ export default async () => {
                   "@babel/preset-react"
                 ],
                 plugins: [
-                  // "@babel/plugin-syntax-jsx",
-                  // "@babel/plugin-transform-react-jsx",
+                  "@babel/plugin-syntax-jsx",
+                  ["@babel/plugin-transform-react-jsx", { runtime: "automatic" }],
                   ["@babel/plugin-proposal-class-properties", { loose: true }],
                   "@babel/plugin-transform-runtime",
                   ReactRefreshBabel

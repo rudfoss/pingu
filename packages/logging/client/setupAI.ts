@@ -8,6 +8,8 @@ declare global {
 
 type RequiredInstrumentationKey = Required<Pick<IConfiguration, "instrumentationKey">>
 
+const x = 42
+
 export const setupAI = (config: IConfiguration & RequiredInstrumentationKey) => {
   if (window.appInsights) {
     throw new Error("setupAI() is only designed to be called once.")
