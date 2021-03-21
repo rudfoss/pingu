@@ -1,11 +1,14 @@
 import Nav from "features/Nav"
+import { SSR } from "features/SSR/SSR"
 import { BrowserRouter } from "react-router-dom"
 import AppRouter from "router/AppRouter"
 
 export const App = () => (
   <BrowserRouter>
-    <Nav />
-    <AppRouter />
+    <SSR includeDevTools={true}>
+      <Nav />
+      <AppRouter />
+    </SSR>
   </BrowserRouter>
 )
 

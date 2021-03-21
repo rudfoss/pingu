@@ -4,9 +4,11 @@ import webpack, { DefinePlugin } from "webpack"
 import ForkTsCheckerPlugin from "fork-ts-checker-webpack-plugin"
 import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
 import HtmlPlugin from "html-webpack-plugin"
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
 
 const SRC_ROOT_PATH = path.resolve(__dirname, "../src")
 const OUTPUT_PATH = path.resolve(__dirname, "../dist")
+const STATS_OUTPUT_PATH = path.resolve(__dirname, "../.stats")
 const TS_CONFIG_FILE = path.resolve(__dirname, "../tsconfig.json")
 
 const START_FILE = path.resolve(SRC_ROOT_PATH, "index.tsx")
@@ -61,6 +63,11 @@ export default async () => {
       }),
       new ForkTsCheckerPlugin({
         async: true
+      }),
+      new BundleAnalyzerPlugin({
+        analyzerMode: "static",
+        reportFilename: path.resolve(STATS_OUTPUT_PATH, "./report.html"),
+        openAnalyzer: false
       })
     ],
 

@@ -105,3 +105,6 @@ dist
 
 # Dist folder for build outputs
 packages/*/dist
+
+# Stats output from build and bundle tasks
+packages/*/.stats
