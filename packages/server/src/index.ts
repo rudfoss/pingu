@@ -24,6 +24,7 @@ const start = async () => {
   app.get("/_health", (_, res) => {
     res.send({ ok: true, time: new Date().toISOString() })
   })
+  app.use(express.static(config.publicPath, { index: false }))
   app.get("*", await spa({ indexHtmlPath: config.indexHtmlPath, initialState: {} }))
 
   await createHttpServer({

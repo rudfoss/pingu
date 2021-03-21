@@ -18,6 +18,8 @@ const TS_CONFIG_FILE = path.resolve(__dirname, "../tsconfig.json")
 const START_FILE = path.resolve(SRC_ROOT_PATH, "index.tsx")
 const INDEX_HTML_FILE = path.resolve(SRC_ROOT_PATH, "index.html")
 
+const PORT = 3010
+
 export default async () => {
   const config: webpack.Configuration = {
     mode: "development",
@@ -36,7 +38,7 @@ export default async () => {
       overlay: true,
       inline: true,
       writeToDisk: true,
-      port: 3010,
+      port: PORT,
       headers: {
         "Access-Control-Allow-Origin": "*"
       }
@@ -47,7 +49,7 @@ export default async () => {
     output: {
       filename: "js/[name]-[contenthash].js",
       chunkFilename: "js/[name]-chunk-[contenthash].js",
-      publicPath: "https://localhost:3010/", // The last / is critical, without it hot-reloading breaks
+      publicPath: `https://localhost:${PORT}/`, // The last / is critical, without it hot-reloading breaks
       path: OUTPUT_PATH
     },
 
