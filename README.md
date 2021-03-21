@@ -9,6 +9,7 @@ An opinionated web stack built on node and well-known libraries.
 - ESlint + prettier
 - Bundling: `webpack`
 - Transpiling: `babel`
+- Logging: `Application Insights`
 
 ## Client
 
@@ -21,4 +22,3 @@ An opinionated web stack built on node and well-known libraries.
 - Request handling: `express`
 - API documentation: `tsoa`
 - Server -> client data transfer: `react-query` cache
-- Logging with Azure Application Insights
