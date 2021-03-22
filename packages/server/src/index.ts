@@ -24,6 +24,8 @@ const start = async () => {
   app.get("/_health", (_, res) => {
     res.send({ ok: true, time: new Date().toISOString() })
   })
+
+  app.get("/index.html", (_, res) => res.redirect("/", 302))
   app.use(express.static(config.publicPath, { index: false }))
   app.get("*", await spa({ indexHtmlPath: config.indexHtmlPath, initialState: {} }))
 
