@@ -1,5 +1,6 @@
 {
 	"editor.rulers": [120],
+	"barrelr.lineEnding": "LF",
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true
 	},
@@ -10,5 +11,13 @@
 	"[typescriptreact]": {
 		"editor.formatOnSave": true,
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/.git": true,
+		"**/yarn.lock": true,
+		"**/.yarn": true,
+		"**/.cache": true,
+		"**/dist": true
 	}
 }
