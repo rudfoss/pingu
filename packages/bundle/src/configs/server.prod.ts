@@ -1,8 +1,10 @@
 import webpack from "webpack"
+import path from "path"
 
 import ForkTsCheckerPlugin from "fork-ts-checker-webpack-plugin"
 import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
 import { NODE_TARGETS } from "./targets"
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
 
 export interface NodeBundleDevOptions {
 	paths: {
@@ -18,12 +20,17 @@ export interface NodeBundleDevOptions {
 		 * The output folder
 		 */
 		output: string
+		/**
+		 * The output folder for stats. If not specified will use `{output}../.stats`
+		 */
+		statsOutput?: string
 	}
 	defines?: Record<string, any>
 }
 
 export default async (options: NodeBundleDevOptions) => {
 	const { paths } = options
+	const statsOutput = paths.statsOutput ?? path.resolve(paths.output, "../.stats")
 	const config: webpack.Configuration = {
 		mode: "production",
 		target: "node",
@@ -34,6 +41,13 @@ export default async (options: NodeBundleDevOptions) => {
 		node: {
 			__dirname: false
 		},
+
+		ignoreWarnings: [
+			/critical dependency: the request of a dependency is an expression/i, // Ignore expression dependencies as they are used by express.js view library
+			/can't resolve 'applicationinsights-native-metrics'/i, // Ignore appInsights optional dependency warning
+			/can't resolve '@opentelemetry\/tracing'/i, // Ignore appInsights optional dependency warning
+			/can't resolve '@opentelemetry\/api'/i // Ignore appInsights optional dependency warning
+		],
 
 		output: {
 			filename: "server.js",
@@ -62,7 +76,15 @@ export default async (options: NodeBundleDevOptions) => {
 				"process.env.NODE_ENV": JSON.stringify("production")
 			}),
 			new ForkTsCheckerPlugin({
-				async: true
+				async: true,
+				typescript: {
+					configFile: paths.tsconfig
+				}
+			}),
+			new BundleAnalyzerPlugin({
+				analyzerMode: "static",
+				reportFilename: path.resolve(statsOutput, "./report.html"),
+				openAnalyzer: false
 			})
 		],
 
@@ -82,7 +104,7 @@ export default async (options: NodeBundleDevOptions) => {
 										{
 											useBuiltIns: "usage",
 											corejs: { version: 3, proposals: true },
-											debug: true,
+											debug: false,
 											targets: NODE_TARGETS
 										}
 									],

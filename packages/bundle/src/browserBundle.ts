@@ -9,13 +9,16 @@ import WebpackDevServer from "webpack-dev-server"
  * @param options
  */
 export const browserBundleDev = async (options: BrowserBundleDevOptions) => {
+	console.log("Options", JSON.stringify(options, null, 2))
+
 	console.log(`Clearing output directory "${options.paths.output}"`)
 	await fs.emptyDir(options.paths.output)
 
 	const configuration = await devConfig(options)
 	const server = new WebpackDevServer(webpack(configuration), configuration.devServer)
-	console.log(`Server starting @ https://localhost:${configuration.devServer.port}`)
-	server.listen(configuration.devServer.port, (err) => {
+	const port = configuration.devServer!.port ?? 3010
+	console.log(`Server starting @ https://localhost:${port}`)
+	server.listen(port, (err) => {
 		if (err) {
 			console.error(err.message, err.stack)
 			process.exit(1)
@@ -24,11 +27,13 @@ export const browserBundleDev = async (options: BrowserBundleDevOptions) => {
 }
 
 export const browserBundleProd = async (options: BrowserBundleProdOptions) => {
+	console.log("Options", JSON.stringify(options, null, 2))
+
 	console.log(`Clearing output directory "${options.paths.output}"`)
 	await fs.emptyDir(options.paths.output)
 
 	const configuration = await prodConfig(options)
-	return new Promise((resolve, reject) => {
+	const result = await new Promise((resolve, reject) => {
 		webpack(configuration).run((err: any, stats: any) => {
 			if (err) {
 				console.warn(`Server errors during build`)
@@ -59,4 +64,10 @@ export const browserBundleProd = async (options: BrowserBundleProdOptions) => {
 			resolve(stats)
 		})
 	})
+
+	console.log(`
+Final output written to: ${options.paths.output}
+`)
+
+	return result
 }

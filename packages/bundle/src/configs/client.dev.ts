@@ -5,6 +5,7 @@ import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
 import HtmlHarddiskPlugin from "html-webpack-harddisk-plugin"
 import HtmlPlugin from "html-webpack-plugin"
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin"
+import { CleanTerminalPlugin } from "./plugins/CleanTerminalPlugin"
 import { prepareDefines } from "../utils/prepareDefines"
 
 // This does not have types so must be imported like this
@@ -95,8 +96,12 @@ export default async (options: BrowserBundleDevOptions) => {
 			new webpack.HotModuleReplacementPlugin(),
 			new ReactRefreshWebpackPlugin(),
 			new ForkTsCheckerPlugin({
-				async: true
-			})
+				async: true,
+				typescript: {
+					configFile: paths.tsconfig
+				}
+			}),
+			new CleanTerminalPlugin({ message: "Recompiling..." })
 		],
 
 		module: {

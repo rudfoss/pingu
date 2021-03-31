@@ -27,7 +27,9 @@ export interface BrowserBundleProdOptions {
 		 * The output folder
 		 */
 		output: string
-
+		/**
+		 * The output folder for stats. If not specified will use `{output}../.stats`
+		 */
 		statsOutput?: string
 	}
 	defines?: Record<string, any>
@@ -84,7 +86,10 @@ export default async (options: BrowserBundleProdOptions) => {
 				}
 			}),
 			new ForkTsCheckerPlugin({
-				async: true
+				async: true,
+				typescript: {
+					configFile: paths.tsconfig
+				}
 			}),
 			new BundleAnalyzerPlugin({
 				analyzerMode: "static",
@@ -109,7 +114,7 @@ export default async (options: BrowserBundleProdOptions) => {
 										{
 											useBuiltIns: "usage",
 											corejs: { version: 3, proposals: true },
-											debug: true,
+											debug: false,
 											targets: BROWSER_TARGETS
 										}
 									],
