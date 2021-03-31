@@ -1,28 +1,22 @@
-import getWebpackConfig from "../webpack/webpack.config.dev"
-import webpack from "webpack"
-import WebpackDevServer from "webpack-dev-server"
-import rimraf from "rimraf"
-import { promisify } from "util"
+import path from "path"
+import { browserBundleDev } from "@radtools/bundle/src/browserBundle"
 
 const start = async () => {
-  const config = await getWebpackConfig()
-  const distPath = config.output!.path!
-  console.log(`Clearing output directory "${config.output!.path!}"...`)
-  await promisify(rimraf)(distPath)
-
-  const server = new WebpackDevServer(webpack(config), config.devServer)
-  console.log(`
-  Server starting @ https://localhost:${config.devServer?.port}
-`)
-  server.listen(config.devServer?.port || 3010, (err) => {
-    if (err) {
-      console.error(err)
-      process.exit(1)
-    }
-  })
+	console.log("Starting web-client dev server...")
+	await browserBundleDev({
+		paths: {
+			entry: path.resolve(__dirname, "../src/index.tsx"),
+			indexHtml: path.resolve(__dirname, "../src/index.html"),
+			tsconfig: path.resolve(__dirname, "../tsconfig.json"),
+			output: path.resolve(__dirname, "../dist")
+		},
+		defines: {
+			"process.env.APPINSIGHTS_INSTRUMENTATIONKEY": "a117db64-f046-4743-b6e7-456acd24cf33"
+		}
+	})
 }
 
 start().catch((error) => {
-  console.error(error.message, error.stack)
-  process.exit(1)
+	console.error(error.message, error.stack)
+	process.exit(1)
 })
