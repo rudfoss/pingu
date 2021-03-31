@@ -1,0 +1,20 @@
+{
+  "name": "@radtools/web-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "ts-node scripts/build.ts",
+    "serve": "ts-node src/index.ts",
+    "serve-dist": "node dist/server.js"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.31",
+    "@types/node-forge": "^0.9.7",
+    "node-forge": "^0.10.0"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "express": "^4.17.1"
+  }
+}

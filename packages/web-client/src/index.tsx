@@ -1,4 +1,4 @@
-import { setupAI } from "logging/client/setupAI"
+import { setupAI } from "@radtools/logging/client/setupAI"
 setupAI({ instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY! })
 
 import { render } from "react-dom"

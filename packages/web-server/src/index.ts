@@ -1,11 +1,11 @@
 import { getConfig } from "getConfig"
 
-import setupAI from "logging/server/setupAI"
+import setupAI from "@radtools/logging/server/setupAI"
 setupAI({ instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY })
 
 import express from "express"
-import { createHttpServer } from "../utils/createHttpServer"
-import Logger from "logging/server"
+import { createHttpServer } from "./utils/createHttpServer"
+import Logger from "@radtools/logging/server"
 import { spa } from "spa"
 
 const start = async () => {
