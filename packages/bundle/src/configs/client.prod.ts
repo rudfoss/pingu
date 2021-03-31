@@ -47,7 +47,7 @@ export default async (options: BrowserBundleProdOptions) => {
 
 		optimization: {
 			runtimeChunk: "multiple",
-			minimize: true,
+			minimize: false,
 			splitChunks: {
 				chunks: "all"
 			}

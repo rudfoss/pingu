@@ -1,17 +1,17 @@
-import EnvironmentCtxProvider from "contexts/Environment"
-import SSR from "contexts/SSR"
+import EnvironmentCtx from "contexts/Environment"
+import ReactQueryCtx from "contexts/ReactQueryCtx"
 import { BrowserRouter } from "react-router-dom"
 
 export interface IContextsProps {
-  children: React.ReactNode
+	children: React.ReactNode
 }
 
 export const Contexts = ({ children }: IContextsProps) => (
-  <BrowserRouter>
-    <EnvironmentCtxProvider>
-      <SSR includeDevTools>{children}</SSR>
-    </EnvironmentCtxProvider>
-  </BrowserRouter>
+	<BrowserRouter>
+		<EnvironmentCtx>
+			<ReactQueryCtx>{children}</ReactQueryCtx>
+		</EnvironmentCtx>
+	</BrowserRouter>
 )
 
 export default Contexts

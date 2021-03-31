@@ -3,14 +3,35 @@
 		"prefix": "react-component",
 		"description": "Creates a react function component without props",
 		"body": [
-			"export interface I${1:name}Props {",
+			"export interface ${1:name}Props {",
 			"\t${0}",
 			"}",
 			"",
-			"export const ${1:name} = (props: I${1:name}Props) => {",
+			"export const ${1:name} = (props: ${1:name}Props) => {",
 			"}",
 			"",
 			"export default ${1:name}"
+		],
+		"scope": "typescriptreact"
+	},
+	"React Context Provider": {
+		"prefix": "react-context-provider",
+		"description": "Creates a react context provider with automatic children support",
+		"body": [
+			"import React from \"react\"",
+			"",
+			"export interface ${1:name}ProviderProps {",
+			"\tchildren: React.ReactNode",
+			"}",
+			"",
+			"export const ${1:name}Provider = ({children}: ${1:name}ProviderProps) => {",
+			"\t${0}",
+			"\treturn (",
+			"\t\t<${1:name}.Provider>{children}</${1:name}.Provider>",
+			"\t)",
+			"}",
+			"",
+			"export default ${1:name}Provider"
 		],
 		"scope": "typescriptreact"
 	},
