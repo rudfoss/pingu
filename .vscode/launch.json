@@ -22,7 +22,7 @@
 			"name": "Client",
 			"type": "pwa-node",
 			"request": "launch",
-			"args": ["${workspaceFolder}/packages/client/scripts/dev.ts"],
+			"args": ["${workspaceFolder}/packages/web-client/scripts/dev.ts"],
 			"runtimeArgs": [
 				"-r",
 				"ts-node/register",
@@ -33,14 +33,14 @@
 				"${workspaceFolder}/**",
 				"!**/node_modules/**"
 			],
-			"cwd": "${workspaceFolder}/packages/client",
+			"cwd": "${workspaceFolder}/packages/web-client",
 			"outputCapture": "std"
 		},
 		{
 			"name": "Server",
 			"type": "pwa-node",
 			"request": "launch",
-			"args": ["${workspaceFolder}/packages/server/src/index.ts"],
+			"args": ["${workspaceFolder}/packages/web-server/src/index.ts"],
 			"runtimeArgs": [
 				"-r",
 				"ts-node/register",
@@ -51,7 +51,7 @@
 				"${workspaceFolder}/**",
 				"!**/node_modules/**"
 			],
-			"cwd": "${workspaceFolder}/packages/server",
+			"cwd": "${workspaceFolder}/packages/web-server",
 			"outputCapture": "std"
 		}
 	],
