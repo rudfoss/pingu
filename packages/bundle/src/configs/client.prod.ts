@@ -8,36 +8,22 @@ import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
 
 import { BROWSER_TARGETS } from "./targets"
 import { prepareDefines } from "../utils/prepareDefines"
+import { BrowserBundleDevOptions } from "./client.dev"
 
-export interface BrowserBundleProdOptions {
-	paths: {
-		/**
-		 * The ts entry file
-		 */
-		entry: string
-		/**
-		 * The index.html file
-		 */
-		indexHtml: string
-		/**
-		 *
-		 */
-		tsconfig: string
-		/**
-		 * The output folder
-		 */
-		output: string
+export interface BrowserBundleProdOptions extends BrowserBundleDevOptions {
+	paths: BrowserBundleDevOptions["paths"] & {
 		/**
 		 * The output folder for stats. If not specified will use `{output}../.stats`
 		 */
 		statsOutput?: string
 	}
-	defines?: Record<string, any>
 }
 
 export default async (options: BrowserBundleProdOptions) => {
 	const { paths } = options
 	const statsOutput = paths.statsOutput ?? path.resolve(paths.output, "../.stats")
+	const targets = options.targets ?? BROWSER_TARGETS
+
 	const config: webpack.Configuration = {
 		mode: "production",
 		target: "web",
@@ -115,7 +101,7 @@ export default async (options: BrowserBundleProdOptions) => {
 											useBuiltIns: "usage",
 											corejs: { version: 3, proposals: true },
 											debug: false,
-											targets: BROWSER_TARGETS
+											targets
 										}
 									],
 									"@babel/preset-typescript",

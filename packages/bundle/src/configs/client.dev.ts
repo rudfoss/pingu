@@ -33,13 +33,23 @@ export interface BrowserBundleDevOptions {
 		 */
 		output: string
 	}
+	/**
+	 * Define any constants you want to replace during bundling.
+	 */
 	defines?: Record<string, any>
+	/**
+	 * Specify targets used by `@babel/preset-env` when bundling.
+	 * @defaults `BROWSER_TARGETS`
+	 */
+	targets?: any
 }
 
 const PORT = 3010
 
 export default async (options: BrowserBundleDevOptions) => {
 	const { paths } = options
+	const targets = options.targets ?? BROWSER_TARGETS
+
 	const config: webpack.Configuration = {
 		mode: "development",
 		target: "web",
@@ -121,7 +131,7 @@ export default async (options: BrowserBundleDevOptions) => {
 											useBuiltIns: "usage",
 											corejs: { version: 3, proposals: true },
 											debug: false,
-											targets: BROWSER_TARGETS
+											targets
 										}
 									],
 									"@babel/preset-typescript",

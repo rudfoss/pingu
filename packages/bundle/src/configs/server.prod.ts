@@ -25,6 +25,9 @@ export interface NodeBundleDevOptions {
 		 */
 		statsOutput?: string
 	}
+	/**
+	 * Define any constants you want to replace during bundling.
+	 */
 	defines?: Record<string, any>
 }
 
