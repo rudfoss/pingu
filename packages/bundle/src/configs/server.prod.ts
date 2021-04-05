@@ -53,7 +53,7 @@ export default async (options: NodeBundleDevOptions) => {
 		],
 
 		output: {
-			filename: "server.js",
+			filename: "index.js",
 			path: paths.output
 		},
 
