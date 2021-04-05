@@ -5,6 +5,7 @@ import ForkTsCheckerPlugin from "fork-ts-checker-webpack-plugin"
 import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
 import { NODE_TARGETS } from "./targets"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
+import { prepareDefines } from "../utils/prepareDefines"
 
 export interface NodeBundleDevOptions {
 	paths: {
@@ -50,6 +51,7 @@ export default async (options: NodeBundleDevOptions) => {
 			/can't resolve 'applicationinsights-native-metrics'/i, // Ignore appInsights optional dependency warning
 			/can't resolve '@opentelemetry\/tracing'/i, // Ignore appInsights optional dependency warning
 			/can't resolve '@opentelemetry\/api'/i // Ignore appInsights optional dependency warning
+			// /require.extensions is not supported by webpack/i // Ignore warning when bundling handlebars (dependency of TSOA)
 		],
 
 		output: {
@@ -74,7 +76,8 @@ export default async (options: NodeBundleDevOptions) => {
 
 		plugins: [
 			new webpack.DefinePlugin({
-				"process.env.NODE_ENV": JSON.stringify("production")
+				"process.env.NODE_ENV": JSON.stringify("production"),
+				...prepareDefines(options.defines)
 			}),
 			new ForkTsCheckerPlugin({
 				async: true,
