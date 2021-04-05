@@ -1,0 +1,12 @@
+{
+  "name": "utilities",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "node-forge": "^0.10.0"
+  },
+  "devDependencies": {
+    "@types/node-forge": "^0.9.7"
+  }
+}
