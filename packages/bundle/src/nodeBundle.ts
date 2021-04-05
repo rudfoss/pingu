@@ -1,6 +1,7 @@
 import webpack from "webpack"
 import prodConfig, { NodeBundleDevOptions } from "./configs/node.prod"
 import fs from "fs-extra"
+export { NodeBundleDevOptions }
 
 export const nodeBundleProd = async (options: NodeBundleDevOptions) => {
 	console.log("Options", JSON.stringify(options, null, 2))

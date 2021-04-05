@@ -6,6 +6,7 @@ import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
 import { NODE_TARGETS } from "./targets"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
 import { prepareDefines } from "../utils/prepareDefines"
+import CopyWebpackPlugin from "copy-webpack-plugin"
 
 export interface NodeBundleDevOptions {
 	paths: {
@@ -30,6 +31,10 @@ export interface NodeBundleDevOptions {
 	 * Define any constants you want to replace during bundling.
 	 */
 	defines?: Record<string, any>
+	/**
+	 * Optional configuration for copy-webpack-plugin if you want to copy files to the output directory.
+	 */
+	copyPluginOptions?: ConstructorParameters<typeof CopyWebpackPlugin>[0]
 }
 
 export default async (options: NodeBundleDevOptions) => {
@@ -89,8 +94,9 @@ export default async (options: NodeBundleDevOptions) => {
 				analyzerMode: "static",
 				reportFilename: path.resolve(statsOutput, "./report.html"),
 				openAnalyzer: false
-			})
-		],
+			}),
+			options.copyPluginOptions ? new CopyWebpackPlugin(options.copyPluginOptions) : undefined
+		].filter(Boolean) as webpack.Configuration["plugins"], // Removes any undefined plugin entries
 
 		module: {
 			rules: [
