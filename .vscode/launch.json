@@ -19,7 +19,7 @@
 			"outputCapture": "std"
 		},
 		{
-			"name": "Client",
+			"name": "web-client",
 			"type": "pwa-node",
 			"request": "launch",
 			"args": ["${workspaceFolder}/packages/web-client/scripts/dev.ts"],
@@ -37,7 +37,7 @@
 			"outputCapture": "std"
 		},
 		{
-			"name": "Server",
+			"name": "web-server",
 			"type": "pwa-node",
 			"request": "launch",
 			"args": ["${workspaceFolder}/packages/web-server/src/index.ts"],
@@ -53,12 +53,30 @@
 			],
 			"cwd": "${workspaceFolder}/packages/web-server",
 			"outputCapture": "std"
+		},
+		{
+			"name": "web-api",
+			"type": "pwa-node",
+			"request": "launch",
+			"args": ["${workspaceFolder}/packages/web-api/src/index.ts"],
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
+			],
+			"resolveSourceMapLocations": [
+				"${workspaceFolder}/**",
+				"!**/node_modules/**"
+			],
+			"cwd": "${workspaceFolder}/packages/web-api",
+			"outputCapture": "std"
 		}
 	],
 	"compounds": [
 		{
-			"name": "Server/Client",
-			"configurations": ["Server", "Client"]
+			"name": "Solution",
+			"configurations": ["web-client", "web-server", "web-api"]
 		}
 	]
 }
