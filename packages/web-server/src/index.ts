@@ -13,6 +13,9 @@ const start = async () => {
 	const config = getConfig()
 	const logger = Logger.createAppLogger(config.appName)
 
+	app.set("trust proxy", true) // Trust Azure HTTPS termination proxy
+	app.disable("x-powered-by")
+
 	app.use((req: any, res, next) => {
 		req.spaState = {
 			foo: 42,
