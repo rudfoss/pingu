@@ -1,4 +1,4 @@
-import { Controller, Get, Route } from "tsoa"
+import { Controller, Get, Route } from "@tsoa/runtime"
 
 @Route("_health")
 export class HealthController extends Controller {
