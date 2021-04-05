@@ -1,5 +1,5 @@
 import webpack from "webpack"
-import prodConfig, { NodeBundleDevOptions } from "./configs/server.prod"
+import prodConfig, { NodeBundleDevOptions } from "./configs/node.prod"
 import fs from "fs-extra"
 
 export const nodeBundleProd = async (options: NodeBundleDevOptions) => {

@@ -109,9 +109,17 @@ export default async (options: NodeBundleDevOptions) => {
 											targets: NODE_TARGETS
 										}
 									],
-									"@babel/preset-typescript"
+									[
+										"@babel/preset-typescript",
+										{
+											onlyRemoveTypeImports: true
+										}
+									]
 								],
-								plugins: [["@babel/plugin-proposal-class-properties", { loose: true }]]
+								plugins: [
+									["@babel/plugin-proposal-decorators", { legacy: true }], // Handles decorators like those required for tsoa
+									["@babel/plugin-proposal-class-properties", { loose: true }]
+								]
 							}
 						}
 					]

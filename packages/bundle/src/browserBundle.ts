@@ -1,6 +1,6 @@
 import webpack from "webpack"
-import devConfig, { BrowserBundleDevOptions } from "./configs/client.dev"
-import prodConfig, { BrowserBundleProdOptions } from "./configs/client.prod"
+import devConfig, { BrowserBundleDevOptions } from "./configs/browser.dev"
+import prodConfig, { BrowserBundleProdOptions } from "./configs/browser.prod"
 import fs from "fs-extra"
 import WebpackDevServer from "webpack-dev-server"
 

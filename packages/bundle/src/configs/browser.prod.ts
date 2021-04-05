@@ -8,7 +8,7 @@ import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
 
 import { BROWSER_TARGETS } from "./targets"
 import { prepareDefines } from "../utils/prepareDefines"
-import { BrowserBundleDevOptions } from "./client.dev"
+import { BrowserBundleDevOptions } from "./browser.dev"
 
 export interface BrowserBundleProdOptions extends BrowserBundleDevOptions {
 	paths: BrowserBundleDevOptions["paths"] & {
@@ -104,7 +104,12 @@ export default async (options: BrowserBundleProdOptions) => {
 											targets
 										}
 									],
-									"@babel/preset-typescript",
+									[
+										"@babel/preset-typescript",
+										{
+											onlyRemoveTypeImports: true
+										}
+									],
 									"@babel/preset-react"
 								],
 								plugins: [

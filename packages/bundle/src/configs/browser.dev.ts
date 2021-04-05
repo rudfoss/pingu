@@ -134,7 +134,12 @@ export default async (options: BrowserBundleDevOptions) => {
 											targets
 										}
 									],
-									"@babel/preset-typescript",
+									[
+										"@babel/preset-typescript",
+										{
+											onlyRemoveTypeImports: true
+										}
+									],
 									"@babel/preset-react"
 								],
 								plugins: [
