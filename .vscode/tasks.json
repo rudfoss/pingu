@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "npm: build:tsoa - packages/web-api",
+			"type": "npm",
+			"script": "build:tsoa",
+			"path": "packages/web-api",
+			"group": "build",
+			"problemMatcher": [],
+			"detail": "ts-node scripts/buildTSOA.ts",
+			"options": {
+				"cwd": "packages/web-api"
+			}
+		}
+	]
+}

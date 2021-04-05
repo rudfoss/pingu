@@ -59,6 +59,7 @@
 			"type": "pwa-node",
 			"request": "launch",
 			"args": ["${workspaceFolder}/packages/web-api/src/index.ts"],
+			"preLaunchTask": "npm: build:tsoa - packages/web-api",
 			"runtimeArgs": [
 				"-r",
 				"ts-node/register",

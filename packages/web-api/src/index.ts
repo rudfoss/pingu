@@ -6,15 +6,15 @@ setupAI({ instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY })
 import express from "express"
 import { createHttpServer } from "utilities/node/createHttpServer"
 import Logger from "@radtools/logging/server"
+import { RegisterRoutes } from "routes/routes"
 
 const start = async () => {
 	const app = express()
 	const config = getConfig()
 	const logger = Logger.createAppLogger(config.appName)
 
-	app.get("/_health", (_, res) => {
-		res.send({ ok: true, time: new Date().toISOString() })
-	})
+	RegisterRoutes(app)
+	app.get("*", (req, res) => res.send({ catchAll: true, path: req.path }))
 
 	await createHttpServer({
 		handler: app,
