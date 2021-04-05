@@ -5,8 +5,9 @@
   "license": "MIT",
   "scripts": {
     "build:tsoa": "ts-node scripts/buildTSOA.ts",
+    "build:swaggerui": "ts-node scripts/buildSwaggerUI.ts",
     "build:code": "ts-node scripts/build.ts",
-    "build": "yarn build:tsoa && yarn build:code",
+    "build": "yarn build:tsoa && yarn build:swaggerui && yarn build:code",
     "serve": "node dist/index.js"
   },
   "dependencies": {
