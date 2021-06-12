@@ -1,5 +1,5 @@
 {
-  "name": "web-api",
+  "name": "@radtools/web-api",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -16,6 +16,6 @@
   },
   "devDependencies": {
     "@types/swagger-ui-express": "^4.1.2",
-    "tsoa": "^3.6.1"
+    "tsoa": "^3.8.0"
   }
 }
