@@ -113,7 +113,10 @@ export default async (options: BrowserBundleProdOptions) => {
 									"@babel/preset-react"
 								],
 								plugins: [
+									"@babel/plugin-syntax-jsx",
+									["@babel/plugin-transform-react-jsx", { runtime: "automatic" }],
 									["@babel/plugin-proposal-class-properties", { loose: true }],
+									["@babel/plugin-proposal-private-methods", { loose: true }],
 									"@babel/plugin-transform-runtime"
 								]
 							}
