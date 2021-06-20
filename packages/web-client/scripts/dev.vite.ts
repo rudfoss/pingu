@@ -1,4 +1,4 @@
-import { browserBundleDev } from "@radtools/vitebundle/src/browserBundle"
+import { browserBundleDev } from "@radtools/bundlevite/src/browserBundle"
 
 const start = async () => {
 	console.log("Starting web-client Vite dev server...")
