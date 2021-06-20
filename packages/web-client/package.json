@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node scripts/dev",
+    "start:vite": "ts-node scripts/dev.vite",
     "build": "ts-node scripts/build",
     "serve-dist": "http-server -p 3000 dist",
     "tsc:traceResolution": "tsc --traceResolution > trace.log"

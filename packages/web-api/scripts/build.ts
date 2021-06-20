@@ -1,6 +1,6 @@
 import path from "path"
 import { nodeBundleProd, NodeBundleDevOptions } from "@radtools/bundle/src/nodeBundle"
-import { ArrayTypes } from "utilities/ts"
+import { ArrayTypes } from "@radtools/utilities/ts"
 
 type SwaggerPattern = ArrayTypes<Required<NodeBundleDevOptions>["copyPluginOptions"]["patterns"]>
 

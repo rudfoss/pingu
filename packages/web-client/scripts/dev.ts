@@ -6,7 +6,7 @@ const start = async () => {
 	await browserBundleDev({
 		paths: {
 			entry: path.resolve(__dirname, "../src/index.tsx"),
-			indexHtml: path.resolve(__dirname, "../src/index.html"),
+			indexHtml: path.resolve(__dirname, "../index.webpack.html"),
 			tsconfig: path.resolve(__dirname, "../tsconfig.json"),
 			output: path.resolve(__dirname, "../dist")
 		},

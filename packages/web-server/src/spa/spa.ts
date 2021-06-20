@@ -1,7 +1,7 @@
 import { Handler } from "express"
 import { SPAPage, SPAPageCreateOptions } from "./SPAPage"
 import { SPARequest } from "./SPARequest"
-import { createTimer } from "utilities/node/createTimer"
+import { createTimer } from "@radtools/utilities/node/createTimer"
 
 type SPAOptions<TPageState> = SPAPageCreateOptions<TPageState>
 
