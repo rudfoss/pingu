@@ -1,13 +1,13 @@
-import React, { StrictMode } from "react"
+import React from "react"
 import { render } from "react-dom"
 import App from "./App"
 
 const analytics = () => import("analytics")
 
 render(
-	<StrictMode>
+	<React.StrictMode>
 		<App />
-	</StrictMode>,
+	</React.StrictMode>,
 	document.getElementById("app")
 )
-analytics()
+analytics().then(({ initAnalytics }) => initAnalytics())
