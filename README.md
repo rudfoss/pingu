@@ -12,6 +12,9 @@ This solution is meant to show how many different types of projects may all work
 Name|Description
 -|-
 [`bundle`](packages/bundle)|Centralizes webpack bundle configurations for the different scenarios we want to support.
+[`bundlevite`](packages/bundle)|Alternative bundler using Vite which may be much faster.
 [`logging`](packages/logging)|Tiny logging framework built on [`winston`](https://github.com/winstonjs/winston) that supports both client and server logging.
 [`web-client`](packages/web-client)|A Single Page Application structure built using React and supporting tools.
 [`web-server`](packages/web-server)|A web server example built using express.
+[`web-api`](packages/web-api)|An API project that serves a standalone REST api with a Swagger UI.
+[`utilities`](packages/utilities)|A project with several small utility functions and microlibraries.
