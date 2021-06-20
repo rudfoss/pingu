@@ -1,6 +1,5 @@
 import path from "path"
-import dotenv from "dotenv"
-dotenv.config({ path: path.resolve(__dirname, "../.env") })
+import "../../../scripts/setupEnv"
 
 export const getConfig = () => ({
 	appName: process.env.APP_NAME ?? "web-server",

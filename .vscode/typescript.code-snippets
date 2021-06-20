@@ -3,6 +3,8 @@
 		"prefix": "react-component",
 		"description": "Creates a react function component without props",
 		"body": [
+			"import React from \"react\"",
+			"",
 			"export interface ${1:name}Props {",
 			"\t${0}",
 			"}",
@@ -39,10 +41,18 @@
 		"prefix": "react-component-propless",
 		"description": "Creates a react function component without props",
 		"body": [
+			"import React from \"react\"",
+			"",
 			"export const ${1:name} = () => (${0})",
 			"",
 			"export default ${1:name}"
 		],
 		"scope": "typescriptreact"
+	},
+	"Default export": {
+		"prefix": "export-default",
+		"description": "Passthrough default export from another relative file",
+		"body": ["export { default } from \"./${1:component}\""],
+		"scope": "typescriptreact, typescript"
 	}
 }

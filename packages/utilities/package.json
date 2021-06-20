@@ -1,12 +1,16 @@
 {
-  "name": "utilities",
+  "name": "@radtools/utilities",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "node-forge": "^0.10.0"
+    "node-forge": "^0.10.0",
+    "seedrandom": "^3.0.5",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@types/node-forge": "^0.10.0"
+    "@types/node-forge": "^0.10.0",
+    "@types/seedrandom": "^3.0.0",
+    "@types/uuid": "^8.3.0"
   }
 }

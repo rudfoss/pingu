@@ -4,7 +4,7 @@ import setupAI from "@radtools/logging/server/setupAI"
 setupAI({ instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY })
 
 import express from "express"
-import { createHttpServer } from "utilities/node/createHttpServer"
+import { createHttpServer } from "@radtools/utilities/node/createHttpServer"
 import Logger from "@radtools/logging/server"
 import { RegisterRoutes } from "routes/routes"
 import { setupSwaggerUI } from "setupSwaggerUI"

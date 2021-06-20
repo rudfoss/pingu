@@ -1,5 +1,5 @@
 /**
- * Return only optional properties of a type
+ * Return only optional properties of a type i.e. properties marked with ?.
  */
 export type OptionalPropertyOf<T extends object> = Exclude<
 	{

@@ -6,7 +6,6 @@ import HtmlHarddiskPlugin from "html-webpack-harddisk-plugin"
 import HtmlPlugin from "html-webpack-plugin"
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin"
 import { CleanTerminalPlugin } from "./plugins/CleanTerminalPlugin"
-import { prepareDefines } from "../utils/prepareDefines"
 
 // This does not have types so must be imported like this
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -47,7 +46,7 @@ export interface BrowserBundleDevOptions {
 const PORT = 3010
 
 export default async (options: BrowserBundleDevOptions) => {
-	const { paths } = options
+	const { paths, defines = {} } = options
 	const targets = options.targets ?? BROWSER_TARGETS
 
 	const config: webpack.Configuration = {
@@ -95,7 +94,7 @@ export default async (options: BrowserBundleDevOptions) => {
 			new webpack.DefinePlugin({
 				"process.env.NODE_ENV": JSON.stringify("development"),
 				"process.env.BUILD_TIME": JSON.stringify(new Date().toISOString()),
-				...prepareDefines(options.defines)
+				...defines
 			}),
 			new HtmlHarddiskPlugin(),
 			new HtmlPlugin({

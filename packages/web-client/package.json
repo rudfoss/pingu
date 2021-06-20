@@ -5,8 +5,11 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node scripts/dev",
+    "start:vite": "ts-node scripts/dev.vite",
     "build": "ts-node scripts/build",
-    "serve-dist": "http-server -p 3000 dist",
+    "build:vite": "ts-node scripts/build.vite",
+    "serve": "npx serve -s -p 5000 dist",
+    "serve:vite": "npx serve -s -p 5000 distvite",
     "tsc:traceResolution": "tsc --traceResolution > trace.log"
   },
   "dependencies": {
