@@ -1,8 +1,8 @@
-import { createServer } from "vite"
+import { createServer, build } from "vite"
 import tsConfigPaths from "vite-tsconfig-paths"
 import reactRefresh from "@vitejs/plugin-react-refresh"
 
-export interface BrowserBundleViteDevOptions {
+export interface BrowserBundleViteOptions {
 	/**
 	 * The path to the root of the project where index.html can be found.
 	 */
@@ -13,7 +13,7 @@ export interface BrowserBundleViteDevOptions {
 	define?: Record<string, any>
 }
 
-export const browserBundleDev = async ({ root, define = {} }: BrowserBundleViteDevOptions) => {
+export const browserBundleDev = async ({ root, define = {} }: BrowserBundleViteOptions) => {
 	const devServer = await createServer({
 		plugins: [reactRefresh(), tsConfigPaths()],
 		define: {
@@ -29,4 +29,23 @@ export const browserBundleDev = async ({ root, define = {} }: BrowserBundleViteD
 	})
 
 	await devServer.listen()
+}
+
+export interface BrowserBundleViteProdOptions extends BrowserBundleViteOptions {
+	outDir: string
+}
+
+export const browserBundleProd = async ({ root, outDir, define = {} }: BrowserBundleViteProdOptions) => {
+	await build({
+		root,
+		define: {
+			"process.env.BUILD_TIME": JSON.stringify(new Date().toISOString()),
+			"process.env.NODE_ENV": JSON.stringify("production"),
+			...define
+		},
+		plugins: [tsConfigPaths()],
+		build: {
+			outDir
+		}
+	})
 }
