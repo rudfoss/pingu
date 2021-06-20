@@ -1,3 +1,5 @@
+import "../../../scripts/setupEnv"
+
 import path from "path"
 import { nodeBundleProd } from "@radtools/bundle/src/nodeBundle"
 
@@ -10,7 +12,7 @@ const start = async () => {
 			output: path.resolve(__dirname, "../dist")
 		},
 		defines: {
-			"process.env.APPINSIGHTS_INSTRUMENTATIONKEY": "a117db64-f046-4743-b6e7-456acd24cf33"
+			"process.env.APPINSIGHTS_INSTRUMENTATIONKEY": process.env.APPINSIGHTS_INSTRUMENTATIONKEY
 		}
 	})
 

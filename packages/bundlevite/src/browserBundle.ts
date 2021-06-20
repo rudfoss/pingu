@@ -1,17 +1,27 @@
-import path from "path"
 import { createServer } from "vite"
 import tsConfigPaths from "vite-tsconfig-paths"
 import reactRefresh from "@vitejs/plugin-react-refresh"
 
-export const browserBundleDev = async () => {
+export interface BrowserBundleViteDevOptions {
+	/**
+	 * The path to the root of the project where index.html can be found.
+	 */
+	root: string
+	/**
+	 * Define any constants you want to replace during bundling.
+	 */
+	define?: Record<string, any>
+}
+
+export const browserBundleDev = async ({ root, define = {} }: BrowserBundleViteDevOptions) => {
 	const devServer = await createServer({
 		plugins: [reactRefresh(), tsConfigPaths()],
 		define: {
 			"process.env.BUILD_TIME": JSON.stringify(new Date().toISOString()),
 			"process.env.NODE_ENV": JSON.stringify("development"),
-			"process.env.APPINSIGHTS_INSTRUMENTATIONKEY": JSON.stringify("a117db64-f046-4743-b6e7-456acd24cf33")
+			...define
 		},
-		root: path.resolve(__dirname, "../../web-client"),
+		root,
 		server: {
 			https: true,
 			port: 3010

@@ -1,3 +1,5 @@
+import "../../../scripts/setupEnv"
+
 import path from "path"
 import { nodeBundleProd, NodeBundleDevOptions } from "@radtools/bundle/src/nodeBundle"
 import { ArrayTypes } from "@radtools/utilities/ts"
@@ -29,7 +31,7 @@ const start = async () => {
 			output
 		},
 		defines: {
-			"process.env.APPINSIGHTS_INSTRUMENTATIONKEY": "a117db64-f046-4743-b6e7-456acd24cf33"
+			"process.env.APPINSIGHTS_INSTRUMENTATIONKEY": process.env.APPINSIGHTS_INSTRUMENTATIONKEY
 		},
 		copyPluginOptions: {
 			patterns: swaggerFiles

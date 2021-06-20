@@ -58,6 +58,7 @@ export default async (options: BrowserBundleProdOptions) => {
 		plugins: [
 			new webpack.DefinePlugin({
 				"process.env.NODE_ENV": JSON.stringify("production"),
+				"process.env.BUILD_TIME": JSON.stringify(new Date().toISOString()),
 				...prepareDefines(options.defines)
 			}),
 			new HtmlPlugin({
