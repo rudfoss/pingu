@@ -5,16 +5,14 @@ import reactRefresh from "@vitejs/plugin-react-refresh"
 
 export const browserBundleDev = async () => {
 	const devServer = await createServer({
-		plugins: [
-			reactRefresh(),
-			tsConfigPaths({
-				root: path.resolve(__dirname, "../../web-client")
-			})
-		],
-		root: path.resolve(__dirname, "../../web-client"),
+		configFile: false,
+		define: {
+			"process.env.VITE_TEST": JSON.stringify(new Date().toISOString())
+		},
+		plugins: [reactRefresh(), tsConfigPaths()],
+		root: path.resolve(__dirname, "../../vitewebclient"),
 		server: {
-			https: true,
-			port: 3010
+			https: true
 		}
 	})
 
