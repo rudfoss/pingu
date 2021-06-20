@@ -8,7 +8,7 @@ const start = async () => {
 	await browserBundleDev({
 		root: path.resolve(__dirname, "../"),
 		define: {
-			"process.env.APPINSIGHTS_INSTRUMENTATIONKEY": process.env.APPINSIGHTS_INSTRUMENTATIONKEY
+			"process.env.APPINSIGHTS_INSTRUMENTATIONKEY": JSON.stringify(process.env.APPINSIGHTS_INSTRUMENTATIONKEY)
 		}
 	})
 }
