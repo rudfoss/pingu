@@ -7,7 +7,6 @@ import HtmlPlugin from "html-webpack-plugin"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
 
 import { BROWSER_TARGETS } from "./targets"
-import { prepareDefines } from "../utils/prepareDefines"
 import { BrowserBundleDevOptions } from "./browser.dev"
 
 export interface BrowserBundleProdOptions extends BrowserBundleDevOptions {
@@ -20,7 +19,7 @@ export interface BrowserBundleProdOptions extends BrowserBundleDevOptions {
 }
 
 export default async (options: BrowserBundleProdOptions) => {
-	const { paths } = options
+	const { paths, defines = {} } = options
 	const statsOutput = paths.statsOutput ?? path.resolve(paths.output, "../.stats")
 	const targets = options.targets ?? BROWSER_TARGETS
 
@@ -59,7 +58,7 @@ export default async (options: BrowserBundleProdOptions) => {
 			new webpack.DefinePlugin({
 				"process.env.NODE_ENV": JSON.stringify("production"),
 				"process.env.BUILD_TIME": JSON.stringify(new Date().toISOString()),
-				...prepareDefines(options.defines)
+				...defines
 			}),
 			new HtmlPlugin({
 				template: paths.indexHtml,

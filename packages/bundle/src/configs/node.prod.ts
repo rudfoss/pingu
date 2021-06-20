@@ -5,7 +5,6 @@ import ForkTsCheckerPlugin from "fork-ts-checker-webpack-plugin"
 import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
 import { NODE_TARGETS } from "./targets"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
-import { prepareDefines } from "../utils/prepareDefines"
 import CopyWebpackPlugin from "copy-webpack-plugin"
 
 export interface NodeBundleDevOptions {
@@ -38,7 +37,7 @@ export interface NodeBundleDevOptions {
 }
 
 export default async (options: NodeBundleDevOptions) => {
-	const { paths } = options
+	const { paths, defines = {} } = options
 	const statsOutput = paths.statsOutput ?? path.resolve(paths.output, "../.stats")
 	const config: webpack.Configuration = {
 		mode: "production",
@@ -83,7 +82,7 @@ export default async (options: NodeBundleDevOptions) => {
 			new webpack.DefinePlugin({
 				"process.env.NODE_ENV": JSON.stringify("production"),
 				"process.env.BUILD_TIME": JSON.stringify(new Date().toISOString()),
-				...prepareDefines(options.defines)
+				...defines
 			}),
 			new ForkTsCheckerPlugin({
 				async: true,

@@ -31,7 +31,7 @@ const start = async () => {
 			output
 		},
 		defines: {
-			"process.env.APPINSIGHTS_INSTRUMENTATIONKEY": process.env.APPINSIGHTS_INSTRUMENTATIONKEY
+			"process.env.APPINSIGHTS_INSTRUMENTATIONKEY": JSON.stringify(process.env.APPINSIGHTS_INSTRUMENTATIONKEY)
 		},
 		copyPluginOptions: {
 			patterns: swaggerFiles

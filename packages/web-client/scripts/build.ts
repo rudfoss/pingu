@@ -13,7 +13,7 @@ const start = async () => {
 			output: path.resolve(__dirname, "../dist")
 		},
 		defines: {
-			"process.env.APPINSIGHTS_INSTRUMENTATIONKEY": process.env.APPINSIGHTS_INSTRUMENTATIONKEY
+			"process.env.APPINSIGHTS_INSTRUMENTATIONKEY": JSON.stringify(process.env.APPINSIGHTS_INSTRUMENTATIONKEY)
 		}
 	})
 }
