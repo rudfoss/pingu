@@ -1,8 +1,10 @@
 import { setupAI } from "@radtools/logging/client/setupAI"
 import { ReportHandler } from "web-vitals"
 
-export const initAnalytics = async () => {
-	setupAI({ instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY! })
+export const initAnalytics = async (useAI = true) => {
+	if (useAI) {
+		setupAI({ instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY! })
+	}
 	await reportWebVitals(console.log)
 }
 

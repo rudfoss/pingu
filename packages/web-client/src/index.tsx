@@ -3,6 +3,7 @@ import { render } from "react-dom"
 import App from "./App"
 
 const analytics = () => import("analytics")
+analytics().then(({ initAnalytics }) => initAnalytics())
 
 render(
 	<React.StrictMode>
@@ -10,4 +11,3 @@ render(
 	</React.StrictMode>,
 	document.getElementById("app")
 )
-analytics().then(({ initAnalytics }) => initAnalytics())
