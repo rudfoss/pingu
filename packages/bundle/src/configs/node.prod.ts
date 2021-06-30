@@ -126,6 +126,7 @@ export default async (options: NodeBundleDevOptions) => {
 									]
 								],
 								plugins: [
+									"babel-plugin-const-enum",
 									["@babel/plugin-proposal-decorators", { legacy: true }], // Handles decorators like those required for tsoa
 									"babel-plugin-parameter-decorator", // Handles parameter decorators like those required for tsoa
 									["@babel/plugin-proposal-class-properties", { loose: true }]
