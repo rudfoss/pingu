@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react"
-import Env from "pages/Env"
+import ServerData from "pages/ServerData"
 import Home from "pages/Home"
 import { PostRouter } from "pages/Post"
 import { Route, Switch } from "react-router"
@@ -15,8 +15,8 @@ export const AppRouter = () => (
 			<Route path="/post">
 				<PostRouter />
 			</Route>
-			<Route path="/env">
-				<Env />
+			<Route path="/serverData">
+				<ServerData />
 			</Route>
 			<Route path="/async">
 				<Async />
