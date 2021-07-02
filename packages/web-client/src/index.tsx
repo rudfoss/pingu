@@ -3,7 +3,7 @@ import { render } from "react-dom"
 import App from "./App"
 
 const analytics = () => import("analytics")
-analytics().then(({ initAnalytics }) => initAnalytics())
+analytics().then(({ initAnalytics }) => initAnalytics(false))
 
 render(
 	<React.StrictMode>
