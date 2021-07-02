@@ -7,6 +7,7 @@ import express from "express"
 import { createHttpServer } from "@radtools/utilities/node/createHttpServer"
 import Logger from "@radtools/logging/server"
 import { spa } from "spa"
+import { handle, handleMW } from "Request"
 
 const start = async () => {
 	const app = express()
@@ -16,19 +17,32 @@ const start = async () => {
 	app.set("trust proxy", true) // Trust Azure HTTPS termination proxy
 	app.disable("x-powered-by")
 
-	app.use((req: any, res, next) => {
-		req.spaState = {
-			foo: 42,
-			bar: `Hey there ${'foo"bar'}`
-		}
-		next()
-	})
+	// Setup for all requests
+	app.use(
+		handleMW((req) => {
+			req.log = logger.newRequestLogger()
+			req.spaState = {
+				foo: 42,
+				bar: `Hey there ${'foo"bar'}`
+			}
+		})
+	)
 
-	app.get("/_health", (_, res) => {
-		res.send({ ok: true, time: new Date().toISOString() })
-	})
+	app.get(
+		"/_health",
+		handle((req, res) => {
+			req.log.info("Health endpoint")
+			res.send({ ok: true, time: new Date().toISOString() })
+		})
+	)
 
-	app.get("/index.html", (_, res) => res.redirect("/", 302))
+	app.get(
+		"/index.html",
+		handle((req, res) => {
+			req.log.info("Redirect to /")
+			res.redirect("/", 302)
+		})
+	)
 	app.use(express.static(config.publicPath, { index: false }))
 	app.get("*", await spa({ indexHtmlPath: config.indexHtmlPath, initialState: {} }))
 
