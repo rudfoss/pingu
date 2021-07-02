@@ -6,10 +6,11 @@ import {
 	ErrorRequestHandler
 } from "express"
 import Logger from "@radtools/logging/server"
+import { QueryClient } from "react-query"
 
 export type Request = {
 	log: Logger
-	spaState: Record<string, any>
+	queryClient: QueryClient
 } & ExpressRequest
 
 export type Response = ExpressResponse

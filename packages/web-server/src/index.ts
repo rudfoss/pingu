@@ -8,6 +8,7 @@ import { createHttpServer } from "@radtools/utilities/node/createHttpServer"
 import Logger from "@radtools/logging/server"
 import { spa } from "spa"
 import { handle, handleMW } from "Request"
+import { QueryClient } from "react-query"
 
 const start = async () => {
 	const app = express()
@@ -21,10 +22,7 @@ const start = async () => {
 	app.use(
 		handleMW((req) => {
 			req.log = logger.newRequestLogger()
-			req.spaState = {
-				foo: 42,
-				bar: `Hey there ${'foo"bar'}`
-			}
+			req.queryClient = new QueryClient()
 		})
 	)
 
