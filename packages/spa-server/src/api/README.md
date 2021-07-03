@@ -4,3 +4,20 @@ In `spa-server` each API is intended to provide dynamic data to the `spa-client`
 
 To set up server data in a react app wrap the react tree in `<ServerData>` like this:
 
+```tsx
+<ServerData baseUrl="http://localhost:3000/api">
+	<Data />
+</ServerData>
+```
+
+The data component can now use any server-provided data through hooks which internally connect up React Query to server side endpoints. In any react component import the hook from the server and use it as any other react query
+
+```
+import { useUserInfo } from "@radtools/spa-server/src/api/userInfo/userInfo.client"
+
+const Component = () => {
+	const { data, isFetching } = useUserInfo()
+}
+```
+
+Because the `userInfo.client` file is owned by the server it can easily describe what parameters it needs and what the return data will look like. Typescript will then allow the client component to undertand this and use it accordingly.
