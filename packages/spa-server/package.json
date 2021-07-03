@@ -1,0 +1,11 @@
+{
+  "name": "@radtools/spa-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "fastify": "^3.18.1",
+    "fastify-cors": "^6.0.1",
+    "react-query": "^3.18.1"
+  }
+}
