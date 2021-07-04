@@ -81,7 +81,7 @@ export default async (options: BrowserBundleProdOptions) => {
 				analyzerMode: "static",
 				reportFilename: path.resolve(statsOutput, "./report.html"),
 				openAnalyzer: false
-			}) as any // TODO: Workaround for `Excessive stack depth comparing types` error
+			}) as any // Workaround for `Excessive stack depth comparing types` error
 		],
 
 		module: {

@@ -70,7 +70,8 @@
 				"!**/node_modules/**"
 			],
 			"cwd": "${workspaceFolder}/packages/spa-server",
-			"outputCapture": "std"
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen"
 		},
 		{
 			"name": "web-api",

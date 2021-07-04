@@ -1,0 +1,5 @@
+spa-server:
+	☐ Logging using application insights
+	☐ Session storage with REDIS
+	☐ Session Encryption
+	☐ Authentication with OAuth 2
