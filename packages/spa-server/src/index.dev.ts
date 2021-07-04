@@ -1,7 +1,9 @@
 import { createApp } from "createApp"
+import fastify from "fastify"
 
 const start = async () => {
-	const app = await createApp()
+	const app = fastify({ logger: { level: "info", prettyPrint: true } })
+	await createApp(app)
 	await app.listen(3000)
 	app.log.info("SPA-Server ready")
 }

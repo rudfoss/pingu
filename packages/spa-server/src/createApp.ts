@@ -1,9 +1,7 @@
 import { apis } from "api/apis"
-import fastify from "fastify"
+import { FastifyInstance } from "fastify"
 
-export const createApp = async () => {
-	const app = fastify({ logger: true })
-
+export const createApp = async (app: FastifyInstance) => {
 	app.setErrorHandler(async (err, request, reply) => {
 		request.log.error(err)
 		reply.status(500)

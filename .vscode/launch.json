@@ -58,7 +58,7 @@
 			"name": "spa-server",
 			"type": "pwa-node",
 			"request": "launch",
-			"args": ["${workspaceFolder}/packages/spa-server/src/index.ts"],
+			"args": ["${workspaceFolder}/packages/spa-server/src/index.dev.ts"],
 			"runtimeArgs": [
 				"-r",
 				"ts-node/register",
