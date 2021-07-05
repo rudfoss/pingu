@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "sideEffects": false,
   "dependencies": {
     "fastify": "^3.18.1",
     "fastify-cors": "^6.0.1",

@@ -10,7 +10,7 @@ const prettyPrintOptions: any = {
 const start = async () => {
 	const app = fastify({ logger: { level: "info", prettyPrint: prettyPrintOptions } })
 	await createApp(app)
-	await app.listen(3000)
+	await app.listen(3001)
 	app.log.info("SPA-Server ready in Development mode")
 }
 

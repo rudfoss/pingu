@@ -55,6 +55,25 @@
 			"outputCapture": "std"
 		},
 		{
+			"name": "spa-client",
+			"type": "pwa-node",
+			"request": "launch",
+			"args": ["${workspaceFolder}/packages/spa-client/scripts/dev.ts"],
+			"runtimeArgs": [
+				"-r",
+				"ts-node/register",
+				"-r",
+				"tsconfig-paths/register"
+			],
+			"resolveSourceMapLocations": [
+				"${workspaceFolder}/**",
+				"!**/node_modules/**"
+			],
+			"cwd": "${workspaceFolder}/packages/spa-client",
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen"
+		},
+		{
 			"name": "spa-server",
 			"type": "pwa-node",
 			"request": "launch",
@@ -95,8 +114,8 @@
 	],
 	"compounds": [
 		{
-			"name": "Solution",
-			"configurations": ["web-client", "web-server", "web-api"]
+			"name": "SPA",
+			"configurations": ["spa-client", "spa-server"]
 		}
 	]
 }

@@ -24,7 +24,7 @@ export const browserBundleDev = async ({ root, define = {} }: BrowserBundleViteO
 		root,
 		server: {
 			https: true,
-			port: 3010
+			port: 3000
 		}
 	})
 

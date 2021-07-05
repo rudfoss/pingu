@@ -1,7 +1,7 @@
 import { useMemo } from "react"
-import { useQuery } from "react-query"
+import { useQuery, UseQueryOptions } from "react-query"
 import { useServerData } from "../../react/ServerData"
-import { ResponseError } from "../../react/ResponseError"
+import { ResponseError } from "../ResponseError"
 import { concatUrls } from "@radtools/utilities/generic/concatUrls"
 import { BuildInfo } from "./buildInfo"
 
@@ -13,8 +13,8 @@ const fetchBuildInfo = (baseUrl: string) => async (): Promise<BuildInfo> => {
 	return await response.json()
 }
 
-export const useBuildInfo = () => {
+export const useBuildInfo = (options?: UseQueryOptions<BuildInfo, ResponseError, BuildInfo>) => {
 	const { baseUrl } = useServerData()
 	const fetcher = useMemo(() => fetchBuildInfo(baseUrl), [baseUrl])
-	return useQuery<BuildInfo, ResponseError, BuildInfo>(["buildInfo"], fetchBuildInfo(baseUrl))
+	return useQuery<BuildInfo, ResponseError, BuildInfo>(["buildInfo"], fetcher, options)
 }

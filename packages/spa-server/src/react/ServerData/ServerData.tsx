@@ -1,6 +1,8 @@
 import React, { createContext, useMemo, useContext, useState } from "react"
 import { QueryClientProvider, QueryClient } from "react-query"
 
+export type QueryClientConfig = ConstructorParameters<typeof QueryClient>[0]
+
 interface ServerDataContextProps {
 	baseUrl: string
 	serverData?: any
@@ -17,8 +19,15 @@ export const useServerData = () => {
 }
 
 export interface ServerDataProps {
+	/**
+	 * The root url for all API queries.
+	 */
 	baseUrl?: string
-	queryClientConfig?: ConstructorParameters<typeof QueryClient>[0]
+	/**
+	 * The intial Query Client configuration. Is only used on initial mount. Changes to this object do not update the
+	 * QueryClient.
+	 */
+	queryClientConfig?: QueryClientConfig
 	children: React.ReactNode
 }
 
